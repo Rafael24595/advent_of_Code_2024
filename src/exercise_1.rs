@@ -33,16 +33,7 @@ fn exercise_1_2() {
 
     let content = utils::read_to_string("EXERCISE_I_I.txt");
 
-    let (list_a, list_b) = make_lists(&content);
-
-    let mut counter: HashMap<i64, i64> = HashMap::new();
-    for id in list_b.iter() {
-        let count = match counter.get(id) {
-            Some(count) => count + 1,
-            None => 1
-        };
-        counter.insert(*id, count);
-    }
+    let (list_a, counter) = make_counter(&content);
 
     let mut total = 0;
     for id in list_a.iter() {
@@ -70,4 +61,28 @@ fn make_lists(content: &str) -> (Vec<i64>, Vec<i64>) {
     }
 
     return (list_a, list_b);
+}
+
+fn make_counter(content: &str) -> (Vec<i64>, HashMap<i64, i64>) {
+    let lines = content.split("\n");
+
+    let mut list_a = Vec::new();
+    let mut counter: HashMap<i64, i64> = HashMap::new();
+
+    for line in lines {
+        let tuple = line.split("   ").collect::<Vec<&str>>();
+        if tuple.len() > 0 {
+            list_a.push(tuple[0].trim().parse::<i64>().expect("Not a number"));
+        }
+        if tuple.len() > 1 {
+            let id = tuple[1].trim().parse::<i64>().expect("Not a number");
+            let count = match counter.get(&id) {
+                Some(count) => count + 1,
+                None => 1
+            };
+            counter.insert(id, count);;
+        }
+    }
+
+    return (list_a, counter);
 }
