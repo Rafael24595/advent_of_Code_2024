@@ -2,12 +2,7 @@ use std::collections::HashMap;
 
 use crate::utils;
 
-pub(crate) fn main() {
-    exercise_1_1();
-    exercise_1_2();
-}
-
-fn exercise_1_1() {
+pub(crate) fn exercise_1_1() {
 
     utils::print_title("EXERCISE 1.1");
 
@@ -27,7 +22,7 @@ fn exercise_1_1() {
     utils::print_result(total);
 }
 
-fn exercise_1_2() {
+pub(crate) fn exercise_1_2() {
 
     utils::print_title("EXERCISE 1.2");
 
