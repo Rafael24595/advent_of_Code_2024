@@ -5,6 +5,7 @@ use dotenv::dotenv;
 pub mod  utils;
 
 pub mod exercise_1;
+pub mod exercise_2;
 
 fn main() {
     dotenv().ok();
@@ -16,6 +17,9 @@ fn main() {
 
     /* 01/12/2024 */
     try_execute_group(&exercises, "1", exercise_1::exercise_1_1, exercise_1::exercise_1_2);
+
+    /* 02/12/2024 */
+    try_execute_group(&exercises, "2", exercise_2::exercise_2_1, exercise_2::exercise_2_2);
 
 }
 

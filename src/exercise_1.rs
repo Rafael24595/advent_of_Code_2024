@@ -75,7 +75,7 @@ fn make_counter(content: &str) -> (Vec<i64>, HashMap<i64, i64>) {
                 Some(count) => count + 1,
                 None => 1
             };
-            counter.insert(id, count);;
+            counter.insert(id, count);
         }
     }
 

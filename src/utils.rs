@@ -50,7 +50,7 @@ pub(crate) fn print_title(title: &str) {
     println!("\n");
 }
 
-pub(crate) fn print_result(result: i64) {
+pub(crate) fn print_result<T: fmt::Display>(result: T) {
     println!("\nResult: {}\n", ConsoleColors::CONSOLE_RESULT.wrap(result));
 }
 
