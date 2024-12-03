@@ -5,7 +5,8 @@ pub(crate) enum ConsoleColors {
     CONSOLE_SUCESS,
     CONSOLE_FAIL,
     CONSOLE_POWER,
-    CONSOLE_RESULT
+    CONSOLE_RESULT,
+    CONSOLE_BOLD
 }
 
 impl ConsoleColors {
@@ -17,6 +18,7 @@ impl ConsoleColors {
             ConsoleColors::CONSOLE_FAIL => "\x1b[31m",
             ConsoleColors::CONSOLE_POWER => "\x1b[34m",
             ConsoleColors::CONSOLE_RESULT => "\x1b[33m",
+            ConsoleColors::CONSOLE_BOLD => "\x1b[1m",
         }
     }
 
@@ -27,6 +29,7 @@ impl ConsoleColors {
             ConsoleColors::CONSOLE_FAIL => format!("{}{}{}", Self::CONSOLE_FAIL, string, Self::CONSOLE_RESET),
             ConsoleColors::CONSOLE_POWER => format!("{}{}{}", Self::CONSOLE_POWER, string, Self::CONSOLE_RESET),
             ConsoleColors::CONSOLE_RESULT => format!("{}{}{}", Self::CONSOLE_RESULT, string, Self::CONSOLE_RESET),
+            ConsoleColors::CONSOLE_BOLD => format!("{}{}{}", Self::CONSOLE_BOLD, string, Self::CONSOLE_RESET),
         }
     }
 
