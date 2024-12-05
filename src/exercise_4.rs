@@ -10,11 +10,13 @@ pub(crate) fn exercise_4_1() {
     utils::print_title("EXERCISE 4.1");
 
     let content = utils::read_to_string("EXERCISE_IV_I.txt");
+
+    let start = utils::now();
     let matrix = make_matrix(&content);
-
     let total = find_xmas(matrix);
+    let end = utils::now();
 
-    utils::print_result(total);
+    utils::print_result(total, start, end);
 
 }
 
@@ -23,11 +25,13 @@ pub(crate) fn exercise_4_2() {
     utils::print_title("EXERCISE 4.2");
 
     let content = utils::read_to_string("EXERCISE_IV_II.txt");
+
+    let start = utils::now();
     let matrix = make_matrix(&content);
-
     let total = find_x_mas(&matrix);
+    let end = utils::now();
 
-    utils::print_result(total);
+    utils::print_result(total, start, end);
 
 }
 
@@ -112,8 +116,6 @@ fn make_vertical<'a>(matrix: &Vec<Vec<&str>>) -> Vec<String> {
 
     return result;
 }
-
-
 
 fn iterate_nw_se<'a>(rows: usize, row: usize, cols: usize, cursor: usize, matrix: &Vec<Vec<&str>>) -> String {
     let mut row = row;
@@ -254,6 +256,7 @@ fn find_indexes(row: &str, patterns: &[&str]) -> Vec<usize> {
 
     indexes
 }
+
 
 /*
 *

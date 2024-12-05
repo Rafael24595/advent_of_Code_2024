@@ -12,20 +12,24 @@ pub(crate) fn exercise_3_1() {
 
     let content = utils::read_to_string("EXERCISE_III_I.txt");
 
+    let start = utils::now();
     let total = calculate_mults(&content);
+    let end = utils::now();
 
-    utils::print_result(total);
+    utils::print_result(total, start, end);
 }
 
 pub(crate) fn exercise_3_2() {
 
     utils::print_title("EXERCISE 3.2");
 
-    let content = utils::read_to_string("EXERCISE_III_I.txt");
+    let content = utils::read_to_string("EXERCISE_III_II.txt");
 
+    let start = utils::now();
     let total = calculate_mults_with_status(&content);
+    let end = utils::now();
 
-    utils::print_result(total);
+    utils::print_result(total, start, end);
 
 }
 

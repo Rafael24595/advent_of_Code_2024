@@ -6,9 +6,11 @@ pub(crate) fn exercise_2_1() {
 
     let content = utils::read_to_string("EXERCISE_II_I.txt");
 
+    let start = utils::now();
     let total = check_levels(&content);
+    let end = utils::now();
 
-    utils::print_result(total);
+    utils::print_result(total, start, end);
 }
 
 pub(crate) fn exercise_2_2() {
@@ -17,9 +19,11 @@ pub(crate) fn exercise_2_2() {
 
     let content = utils::read_to_string("EXERCISE_II_I.txt");
 
+    let start = utils::now();
     let total = check_levels_with_exceptions(&content);
+    let end = utils::now();
 
-    utils::print_result(total);
+    utils::print_result(total, start, end);
 
 }
 

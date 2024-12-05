@@ -8,6 +8,7 @@ pub(crate) fn exercise_1_1() {
 
     let content = utils::read_to_string("EXERCISE_I_I.txt");
 
+    let start = utils::now();
     let (mut list_a, mut list_b) = make_lists(&content);
 
     list_a.sort();
@@ -18,8 +19,9 @@ pub(crate) fn exercise_1_1() {
         let abs = (cursor - list_b[i]).abs();
         total += abs;
     }
+    let end = utils::now();
 
-    utils::print_result(total);
+    utils::print_result(total, start, end);
 }
 
 pub(crate) fn exercise_1_2() {
@@ -28,6 +30,7 @@ pub(crate) fn exercise_1_2() {
 
     let content = utils::read_to_string("EXERCISE_I_I.txt");
 
+    let start = utils::now();
     let (list_a, counter) = make_counter(&content);
 
     let mut total = 0;
@@ -35,8 +38,9 @@ pub(crate) fn exercise_1_2() {
         let count = counter.get(id).unwrap_or(&0);
         total += id * count;
     }
+    let end = utils::now();
 
-    utils::print_result(total);
+    utils::print_result(total, start, end);
 
 }
 

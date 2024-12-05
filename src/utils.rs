@@ -1,4 +1,4 @@
-use std::{fmt, fs, str};
+use std::{fmt, fs, str, time::{SystemTime, UNIX_EPOCH}};
 
 pub(crate) enum ConsoleColors {
     CONSOLE_RESET,
@@ -53,11 +53,48 @@ pub(crate) fn print_title(title: &str) {
     println!("\n");
 }
 
-pub(crate) fn print_result<T: fmt::Display>(result: T) {
-    println!("\nResult: {}\n", ConsoleColors::CONSOLE_RESULT.wrap(result));
+pub(crate) fn print_result<T: fmt::Display>(result: T, start: u128, end: u128) {
+    let time = format_time(start, end);
+    println!("\nResult: {} - Time: {}\n", ConsoleColors::CONSOLE_RESULT.wrap(result), ConsoleColors::CONSOLE_RESULT.wrap(time));
 }
 
 pub(crate) fn read_to_string(file: &str) -> String {
     return fs::read_to_string(format!("./resources/{}", file))
         .expect("Oh! Something happens! Merry Christmas!");
+}
+
+pub(crate) fn now() -> u128 {
+    let start_time = SystemTime::now();
+    let duration_since_epoch = start_time.duration_since(UNIX_EPOCH).expect("Time went backwards");
+    return duration_since_epoch.as_nanos();
+}
+
+fn format_time(start: u128, end: u128) -> String {
+     let time = end - start;
+
+    let millis = time / 1_000_000;
+    let nanoseconds = time % 1_000_000_000;
+
+    let hours = millis / 3_600_000;
+    let minutes = (millis % 3_600_000) / 60_000;
+    let seconds = (millis % 60_000) / 1_000;
+    let milliseconds = millis % 1_000;
+    let remaining_nanos = nanoseconds % 1_000_000;
+    let remaining_nanos = (remaining_nanos + 5_000) / 1_000;
+
+ 
+    if hours > 0 {
+        return format!("{hours}h {minutes}m {seconds}s {milliseconds}ms {remaining_nanos}ns");
+    }
+    if minutes > 0 {
+        return format!("{minutes}m {seconds}s {milliseconds}ms {remaining_nanos}ns");
+    }
+    if seconds > 0 {
+        return format!("{seconds}s {milliseconds}ms {remaining_nanos}ns");
+    }
+    if milliseconds > 0 {
+        return format!("{milliseconds}ms {remaining_nanos}ns");
+    }
+
+    return format!("{remaining_nanos}ns");
 }

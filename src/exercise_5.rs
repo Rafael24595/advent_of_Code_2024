@@ -8,11 +8,12 @@ pub(crate) fn exercise_5_1() {
 
     let content = utils::read_to_string("EXERCISE_V_I.txt");
 
+    let start = utils::now();
     let (rules, pages) = parse_data(&content);
-    
     let total = evalue_pages(&rules, pages);
+    let end = utils::now();
 
-    utils::print_result(total);
+    utils::print_result(total, start, end);
 }
 
 pub(crate) fn exercise_5_2() {
@@ -21,11 +22,12 @@ pub(crate) fn exercise_5_2() {
 
     let content = utils::read_to_string("EXERCISE_V_I.txt");
 
+    let start = utils::now();
     let (rules, pages) = parse_data(&content);
-    
     let total = evalue_pages_with_correction(&rules, pages);
+    let end = utils::now();
 
-    utils::print_result(total);
+    utils::print_result(total, start, end);
 
 }
 
