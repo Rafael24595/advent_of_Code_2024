@@ -11,6 +11,7 @@ pub mod exercise_4;
 pub mod exercise_5;
 pub mod exercise_6;
 pub mod exercise_7;
+pub mod exercise_8;
 
 fn main() {
     dotenv().ok();
@@ -40,6 +41,9 @@ fn main() {
 
     /* 07/12/2024 */
     try_execute_group(&exercises, "7", exercise_7::exercise_7_1, exercise_7::exercise_7_2);
+
+    /* 08/12/2024 */
+    try_execute_group(&exercises, "8", exercise_8::exercise_8_1, exercise_8::exercise_8_2);
 
 }
 
