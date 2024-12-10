@@ -67,10 +67,10 @@ fn calculate_route<T>(tango: (usize, usize, &str), matrix: Vec<Vec<u8>>, title: 
 
         if is_print {
             thread::sleep(Duration::from_millis(speed));
-            clean_screen();
+            utils::clean_screen();
             title();
             print_data(tango, &matrix, title, &movements, &HashMap::new());
-            reestore_cursor();
+            utils::reestore_cursor();
         }
     }
 
@@ -141,10 +141,10 @@ fn calculate_route_with_obstacule<T>(tango: (usize, usize, &str), matrix: Vec<Ve
 
         if is_print {
             thread::sleep(Duration::from_millis(speed));
-            clean_screen();
+            utils::clean_screen();
             title();
             print_data(tango, &matrix, title, &movements, &obstacles);
-            reestore_cursor();
+            utils::reestore_cursor();
         }
     }
 
@@ -402,13 +402,3 @@ fn styled_tango(tango: (usize, usize, &str)) -> &str {
     }
 }
 
-fn clean_screen() { 
-    print!("\x1B[2J\x1B[H");
-    print!("\x1B[?25l");
-    io::stdout().flush().unwrap();
-}
-
-fn reestore_cursor() {
-    print!("\x1B[?25h");
-    io::stdout().flush().unwrap();
-}

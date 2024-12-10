@@ -1,4 +1,4 @@
-use std::{fmt, fs, str, time::{SystemTime, UNIX_EPOCH}};
+use std::{fmt, fs, io::{self, Write}, str, time::{SystemTime, UNIX_EPOCH}};
 
 pub(crate) enum ConsoleColors {
     CONSOLE_RESET,
@@ -58,6 +58,17 @@ pub(crate) fn print_result<T: fmt::Display>(result: T, start: u128, end: u128) {
     println!("\nResult: {} - Time: {}\n", ConsoleColors::CONSOLE_RESULT.wrap(result), ConsoleColors::CONSOLE_RESULT.wrap(time));
 }
 
+pub(crate) fn clean_screen() { 
+    print!("\x1B[2J\x1B[H");
+    print!("\x1B[?25l");
+    io::stdout().flush().unwrap();
+}
+
+pub(crate) fn reestore_cursor() {
+    print!("\x1B[?25h");
+    io::stdout().flush().unwrap();
+}
+
 pub(crate) fn read_to_string(file: &str) -> String {
     return fs::read_to_string(format!("./resources/{}", file))
         .expect("Oh! Something happens! Merry Christmas!");
@@ -98,3 +109,4 @@ fn format_time(start: u128, end: u128) -> String {
 
     return format!("{remaining_nanos}ns");
 }
+
