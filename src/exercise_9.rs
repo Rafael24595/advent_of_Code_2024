@@ -53,24 +53,21 @@ fn allocate_memory(mut groups: Vec<Group>) -> i64 {
             return calculate_memory(&groups);
         }
 
-        let aux_source_index = find_source(groups.len() - 1, &groups);
-        if aux_source_index.is_none() {
-            todo!()
-        }
-
-        source_index = aux_source_index.unwrap();
+        source_index = find_source(source_index - 1, &groups).expect("Not found");
         source = groups.get(source_index).expect("Not found").clone();
     }
 }
 
 fn allocate_source_memory(mut source: Group, mut groups: Vec<Group>, print: bool) -> (bool, Group, Vec<Group>) {
     let mut position = source.2.len();
+    let mut target_index = 0;
 
-    while let Some(target_data) = find_target(source.0, &groups) {
+    while let Some(target_data) = find_target(source.0, target_index, &groups) {
         let mut free_index = target_data.0;
+        target_index = target_data.1;
         
         for index_source in (0..position).rev() {
-            let target = groups.get_mut(target_data.1).expect("Not found");
+            let target = groups.get_mut(target_index).expect("Not found");
             let len = target.2.len();
 
             target.2[free_index] = source.2[index_source];
@@ -105,8 +102,9 @@ fn find_source(last_source_index: usize, groups: &Vec<Group>) -> Option<usize> {
     return None;
 }
 
-fn find_target(source_id: usize, groups: &Vec<Group>) -> Option<(usize, usize)> {
-    for (id, _, group) in groups {
+fn find_target(source_id: usize, last_index: usize, groups: &Vec<Group>) -> Option<(usize, usize)> {
+    for i in last_index..source_id {
+        let (id, _, group) = groups.get(i).expect("Not found");
         if *id == source_id {
             return None;
         }
