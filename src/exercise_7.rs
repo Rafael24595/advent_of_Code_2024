@@ -34,7 +34,7 @@ pub(crate) fn exercise_7_2() {
 
 fn evalue_tests(tests: Vec<(i128, Vec<i128>)>) -> i128 {
     let mut total = 0;
-    let optimized = env::var("OPTIMIZED_7_1").unwrap_or_default().parse::<bool>().unwrap_or(true);
+    let optimized = env::var("EXERCISE_7_1_OPTIMIZED").unwrap_or_default().parse::<bool>().unwrap_or(true);
     let mut buffer = Vec::new();
     for test in tests {
         let result = test.0;
@@ -67,7 +67,7 @@ fn evalue_tests(tests: Vec<(i128, Vec<i128>)>) -> i128 {
 
 fn evalue_tests_complex(tests: Vec<(i128, Vec<i128>)>) -> i128 {
     let mut total = 0;
-    let optimized = env::var("OPTIMIZED_7_2").unwrap_or_default().parse::<bool>().unwrap_or(true);
+    let optimized = env::var("EXERCISE_7_2_OPTIMIZED").unwrap_or_default().parse::<bool>().unwrap_or(true);
     let mut buffer = Vec::new();
     for test in tests {
         let result = test.0;

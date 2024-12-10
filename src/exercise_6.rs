@@ -40,8 +40,8 @@ pub(crate) fn exercise_6_2() {
 fn calculate_route<T>(tango: (usize, usize, &str), matrix: Vec<Vec<u8>>, title: &T) -> usize where T: Fn() {
     let mut tango = tango;
 
-    let is_print = env::var("PRINT_6_1").unwrap_or_default().parse::<bool>().unwrap_or(false);
-    let speed = env::var("SPEED_6_1").unwrap_or_default().parse::<u64>().unwrap_or(350);
+    let is_print = env::var("EXERCISE_6_1_PRINT").unwrap_or_default().parse::<bool>().unwrap_or(false);
+    let speed = env::var("EXERCISE_6_1_SPEED").unwrap_or_default().parse::<u64>().unwrap_or(350);
 
     let mut movements = HashMap::new();
     movements.insert(make_movements_key(tango), vec![INITIAL]);
@@ -107,8 +107,8 @@ fn calculate_movement<'a>(tango: (usize, usize, &'a str), matrix: &'a Vec<Vec<u8
 fn calculate_route_with_obstacule<T>(tango: (usize, usize, &str), matrix: Vec<Vec<u8>>, title: &T) -> usize where T: Fn() {
     let mut tango = tango;
 
-    let is_print = env::var("PRINT_6_2").unwrap_or_default().parse::<bool>().unwrap_or(false);
-    let speed = env::var("SPEED_6_2").unwrap_or_default().parse::<u64>().unwrap_or(350);
+    let is_print = env::var("EXERCISE_6_2_PRINT").unwrap_or_default().parse::<bool>().unwrap_or(false);
+    let speed = env::var("EXERCISE_6_2_SPEED").unwrap_or_default().parse::<u64>().unwrap_or(350);
 
     let mut movements = HashMap::new();
     movements.insert(make_movements_key(tango), vec![INITIAL]);
